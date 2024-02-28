@@ -1,5 +1,6 @@
 // const path = require("path");
 const express = require("express");
+const cors = require("cors");
 
 const userRouter = require("./routes/userRoutes.js");
 const AppError = require("./utils/appError.js");
@@ -8,6 +9,7 @@ const globalErrorHandler = require("./controllers/errorController.js");
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 // pug views to style the sending mail
 // app.set("view engine", "pug");

@@ -252,6 +252,7 @@ button:disabled {
   box-shadow: var(--shadow-2);
   padding: 2rem 2.5rem;
   margin: 3rem auto;
+  direction: rtl; /* Add this line */
 }
 .form-label {
   display: block;
