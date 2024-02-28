@@ -1,38 +1,54 @@
-.App {
+.headerContainer {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.formSection {
+  text-align: right;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.mainFormContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Adjust as needed */
+  gap: 30px; /* Adjust gap between divs as needed */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.innerFormContainer {
+  background-color: #e2e8f0;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box; /* Include padding and border in the width */
+  border-radius: 15px; /* Set border radius for rounded corners */
+  border: 1px solid #ccc; /* Add border for better appearance */
 }
 
-.App-link {
-  color: #61dafb;
+.lableStyle {
+  font-size: 15px;
+  font-weight: bold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input-field {
+  width: 100%; /* Set the width to 100% */
+  padding: 8px; /* Add padding for better appearance */
+  box-sizing: border-box; /* Include padding and border in the width */
+  direction: rtl;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  border-radius: 5px; /* Set border radius for rounded corners */
+  border: 1px solid #ccc; /* Add border for better appearance */
+}
+
+.submit-button {
+  background-color: #0e7c86; /* Set background color to green */
+  color: white; /* Set text color to white */
+  font-size: 20px; /* Set font size to be larger */
+  font-weight: bold; /* Set font weight to bold */
+  padding: 12px 20px; /* Add padding for better appearance */
+  border: none; /* Remove border */
+  border-radius: 10px; /* Add rounded corners */
+  cursor: pointer; /* Add pointer cursor on hover */
+  display: block; /* Make it a block element */
+  margin: 0 auto; /* Center horizontally */
+  width: 300px;
 }
