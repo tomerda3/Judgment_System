@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Wrapper from "../../assets/wrappers/Header";
 import LogoutContainer from "../LogoutContainer";
+import ThemeToggle from "../ThemeToggle";
 
 const Header = () => {
   return (
@@ -13,6 +14,7 @@ const Header = () => {
 
       <div className="btn-container">
         {/* <LogoutContainer /> */}
+        <ThemeToggle />
         <Link className="btn nav-item" to="login">
           התחבר
         </Link>

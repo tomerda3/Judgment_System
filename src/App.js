@@ -8,6 +8,7 @@ import Login from "./screens/Login";
 import Error from "./screens/Error";
 import Header from "./components/ui/Header";
 import AppLayout from "./components/ui/AppLayout";
+import { DarkModeProvider } from "./context/DarkModeContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,9 +41,11 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />;
-    </QueryClientProvider>
+    <DarkModeProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />;
+      </QueryClientProvider>
+    </DarkModeProvider>
   );
 }
 

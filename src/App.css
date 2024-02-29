@@ -15,7 +15,7 @@
 }
 
 .innerFormContainer {
-  background-color: #e2e8f0;
+  background: var(--background-secondary-color);
   padding-left: 20px;
   padding-right: 20px;
   box-sizing: border-box; /* Include padding and border in the width */
