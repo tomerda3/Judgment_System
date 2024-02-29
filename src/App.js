@@ -2,13 +2,12 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./App.css";
 
+import { DarkModeProvider } from "./context/DarkModeContext";
 import HomeScreen from "./screens/HomeScreen";
 import Register from "./screens/Register";
 import Login from "./screens/Login";
 import Error from "./screens/Error";
-import Header from "./components/ui/Header";
 import AppLayout from "./components/ui/AppLayout";
-import { DarkModeProvider } from "./context/DarkModeContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
