@@ -6,19 +6,23 @@ import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
 import FormRow from "../components/FormRow";
 import signUp from "../api/authentication/signUp";
 import toast from "react-hot-toast";
+import RadioButton from "../components/RadioButton";
 
 const Register = () => {
   const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [role, setRole] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
+  console.log(role);
   const userData = {
     firstName,
     lastName,
+    role,
     email,
     password,
     passwordConfirm,
@@ -56,6 +60,12 @@ const Register = () => {
           labelText="שם משפחה"
           onChange={(e) => setLastName(e.target.value)}
         />
+        <RadioButton
+          labelText="תפקיד"
+          option1="שופט"
+          option2="עורך דין"
+          onChange={(e) => setRole(e.target.value)}
+        />
         <FormRow
           type="email"
           name="email"
@@ -75,7 +85,7 @@ const Register = () => {
           onChange={(e) => setPasswordConfirm(e.target.value)}
         />
         <button type="submit" className={`btn btn-block `} disabled={isPending}>
-          {isPending ? "נכנס.." : "הרשם"}
+          {isPending ? "נרשם.." : "הרשם"}
         </button>{" "}
         <p>
           רשום למערכת?{" "}
