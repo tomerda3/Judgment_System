@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-import { Link, Form } from "react-router-dom";
+import { useState } from "react";
+import { Link, Form, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
 import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
 import FormRow from "../components/FormRow";
-import SubmitBtn from "../components/SubmitBtn";
 import signUp from "../api/authentication/signUp";
+import toast from "react-hot-toast";
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -22,19 +24,19 @@ const Register = () => {
     passwordConfirm,
   };
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: (userData) => signUp(userData),
     onSuccess: () => {
-      console.log("regiterd");
+      toast.success("נרשמת בהצלחה");
+      navigate("/");
     },
     onError: (err) => {
-      console.log(err.message);
+      toast.error(err.message);
     },
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(userData);
     mutate(userData);
   };
 
@@ -72,7 +74,9 @@ const Register = () => {
           labelText="אשר סיסמה"
           onChange={(e) => setPasswordConfirm(e.target.value)}
         />
-        <SubmitBtn />
+        <button type="submit" className={`btn btn-block `} disabled={isPending}>
+          {isPending ? "נכנס.." : "הרשם"}
+        </button>{" "}
         <p>
           רשום למערכת?{" "}
           <Link to="/login" className="member-btn">

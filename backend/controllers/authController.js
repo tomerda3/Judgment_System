@@ -49,7 +49,7 @@ exports.signup = catchAsync(async (req, res, next) => {
 
   for (const field of requiredFields) {
     if (!req.body[field]) {
-      return next(new AppError("All fields must be filled.", 400));
+      return next(new AppError("יש למלא את כל השדות.", 400));
     }
   }
 
@@ -69,14 +69,14 @@ exports.login = catchAsync(async (req, res, next) => {
 
   // 1) Check if email and password exist
   if (!email || !password) {
-    return next(new AppError("Please provide email and password.", 400));
+    return next(new AppError("אנא ספק אימייל וסיסמה.", 400));
   }
 
   // 2) Check if user exists && password is correct
   const user = await User.findOne({ email }).select("+password");
 
   if (!user || !(await user.correctPassword(password, user.password))) {
-    return next(new AppError("Incorrect email or password.", 401));
+    return next(new AppError("אימייל או סיסמה שגויים.", 401));
   }
 
   // 3) change the pushToken
@@ -99,7 +99,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
 
   if (!token) {
-    new AppError("You are not logged in! Please log in to get access.", 401);
+    new AppError("אתה לא מחובר! אנא היכנס כדי לקבל גישה.", 401);
   }
   // 2) Verification token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
@@ -107,12 +107,12 @@ exports.protect = catchAsync(async (req, res, next) => {
   // 3) Check if user still exists
   const currentUser = await User.findById(decoded.id);
   if (!currentUser) {
-    return next(new AppError("This user no longer exists!", 401));
+    return next(new AppError("המשתמש הזה כבר לא קיים!", 401));
   }
 
   // 4) Check if user changed password after the token was issued
   if (currentUser.changedPasswordAfter(decoded.iat)) {
-    new AppError("User recently changed password! Please log in again.", 401);
+    new AppError("משתמש שינה לאחרונה סיסמה! נא להיכנס שוב.", 401);
   }
 
   // GRANT ACCESS TO PROTECTED ROUTE

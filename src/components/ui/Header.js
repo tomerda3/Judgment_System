@@ -8,7 +8,7 @@ const Header = () => {
     <Wrapper>
       <div className="nav-center">
         <Link to="/">
-          <img alt="" src="/logo.jpeg" width="90" height="90" />
+          <img alt="" src="/logo.jpeg" width="100" height="100" />
         </Link>
       </div>
 

@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Navbar from "../components/NavBar";
 import Judjment from "../components/Judgment";
-import Header from "../components/ui/Header";
 function HomeScreen() {
   return (
     <div>

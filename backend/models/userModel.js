@@ -5,34 +5,34 @@ const bcrypt = require("bcryptjs");
 const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
-    required: [true, "Please fill in first name."],
+    required: [true, "נא למלא שם פרטי."],
   },
   lastName: {
     type: String,
-    required: [true, "Please fill in last name."],
+    required: [true, "נא למלא שם משפחה."],
   },
   email: {
     type: String,
-    required: [true, "Please provide email."],
+    required: [true, "אנא ספק אימייל."],
     unique: true,
     lowercase: true,
-    validate: [validator.isEmail, "Please provide a valid email."],
+    validate: [validator.isEmail, "אנא ספק אימייל חוקי."],
   },
   password: {
     type: String,
-    required: [true, "Please enter password."],
-    minlength: [6, "The password must contain at least 6 characters."],
+    required: [true, "נא להזין סיסמה."],
+    minlength: [6, "הסיסמה חייבת להכיל לפחות 6 תווים."],
     select: false,
   },
   passwordConfirm: {
     type: String,
-    required: [true, "Please enter password confirmation."],
+    required: [true, "נא להזין אישור סיסמה."],
     validate: {
       // This only works on CREATE and SAVE!!!
       validator: function (el) {
         return el === this.password;
       },
-      message: "Passwords do not match.",
+      message: "סיסמאות לא תואמות.",
     },
     select: false,
   },

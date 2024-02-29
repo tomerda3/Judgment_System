@@ -10,7 +10,7 @@ const handleDuplicateFieldsDB = (err) => {
   console.log(value);
 
   if (value.includes("@")) {
-    return new AppError("The email entered already exists", 400);
+    return new AppError("האימייל שהוזן כבר קיים", 400);
   }
 
   const message = `Duplicate field value: ${value}. Please use another value!`;
@@ -55,7 +55,7 @@ const sendErrorProd = (err, res) => {
     // 2) Send generic message
     res.status(500).json({
       status: "error",
-      message: "Something went very wrong!",
+      message: "משהו השתבש!",
     });
   }
 };
