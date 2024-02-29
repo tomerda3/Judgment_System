@@ -11,7 +11,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { mutate, isPending, isError, error } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: ({ email, password }) => login({ email, password }),
     onSuccess: () => {
       console.log("logeed in");

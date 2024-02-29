@@ -22,7 +22,7 @@ const Register = () => {
     passwordConfirm,
   };
 
-  const { mutate, isPending, isError, error } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: (userData) => signUp(userData),
     onSuccess: () => {
       console.log("regiterd");
