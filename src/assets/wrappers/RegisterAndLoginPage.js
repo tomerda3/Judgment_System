@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Wrapper = styled.section`
-  min-height: 100vh;
+  min-height: 80vh;
   display: grid;
   align-items: center;
   .logo {

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Navbar from "../components/NavBar";
 import Judjment from "../components/Judgment";
+import Header from "../components/ui/Header";
 function HomeScreen() {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <div style={{ paddingRight: 10, paddingLeft: 10 }}>
         <div className="headerContainer">
           <h1>ברוכים הבאים</h1>
