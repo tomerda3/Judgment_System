@@ -42,6 +42,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   const requiredFields = [
     "firstName",
     "lastName",
+    "role",
     "email",
     "password",
     "passwordConfirm",
@@ -56,6 +57,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
+    role: req.body.role,
     email: req.body.email,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,

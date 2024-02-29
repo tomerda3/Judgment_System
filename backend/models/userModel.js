@@ -11,6 +11,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "נא למלא שם משפחה."],
   },
+  role: {
+    type: String,
+    required: [true, "נא למלא תפקיד."],
+  },
   email: {
     type: String,
     required: [true, "אנא ספק אימייל."],
