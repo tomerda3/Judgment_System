@@ -11,22 +11,17 @@ const LogoutContainer = () => {
 
   return (
     <Wrapper>
-      {/* <button
+      <button
         type="button"
         className="btn logout-btn"
         onClick={() => setShowLogout(!showLogout)}
       >
+        {"שם השופט"}
         <FaCaretDown />
-      </button> */}
-      <button
-        type="button"
-        className="btn logout-btn"
-        onClick={() => console.log("hgh")}
-      ></button>
-
+      </button>
       <div className={showLogout ? "dropdown show-dropdown" : "dropdown"}>
         <button type="button" className="dropdown-btn">
-          logout
+          התנתק
         </button>
       </div>
     </Wrapper>
