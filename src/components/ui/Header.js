@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 import Wrapper from "../../assets/wrappers/Header";
 import LogoutContainer from "../LogoutContainer";
 import ThemeToggle from "../ThemeToggle";
+import { useUsers } from "../../context/UserContext";
 
 const Header = () => {
+  const { userData } = useUsers();
+  console.log("1", userData);
   return (
     <Wrapper>
       <div className="nav-center">

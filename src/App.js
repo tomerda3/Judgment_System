@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import "./App.css";
 
 import { DarkModeProvider } from "./context/DarkModeContext";
+import { UserContext, useUsers } from "./context/UserContext";
 import HomeScreen from "./screens/HomeScreen";
 import Register from "./screens/Register";
 import Login from "./screens/Login";
@@ -21,11 +22,11 @@ const queryClient = new QueryClient({
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
         element: <HomeScreen />,
-        errorElement: <Error />,
       },
       {
         path: "/register",
@@ -40,30 +41,37 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const { login, logout, token, id, firstName, lastName, role, email } =
+    useUsers();
+
   return (
     <DarkModeProvider>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />;
-        <Toaster
-          position="top-center"
-          gutter={12}
-          containerStyle={{ margin: "8px" }}
-          toastOptions={{
-            success: {
-              duration: 3000,
-            },
-            error: {
-              duration: 5000,
-            },
-            style: {
-              fontSize: "16px",
-              maxWidth: "500px",
-              padding: "16px 24px",
-              backgroundColor: "var(--background-secondary-color)",
-              color: "var(--white)",
-            },
-          }}
-        />
+        <UserContext.Provider
+          value={{ login, logout, token, id, firstName, lastName, role, email }}
+        >
+          <RouterProvider router={router} />;
+          <Toaster
+            position="top-center"
+            gutter={12}
+            containerStyle={{ margin: "8px" }}
+            toastOptions={{
+              success: {
+                duration: 3000,
+              },
+              error: {
+                duration: 5000,
+              },
+              style: {
+                fontSize: "16px",
+                maxWidth: "500px",
+                padding: "16px 24px",
+                backgroundColor: "var(--background-secondary-color)",
+                // color: "var(--white)",
+              },
+            }}
+          />
+        </UserContext.Provider>
       </QueryClientProvider>
     </DarkModeProvider>
   );

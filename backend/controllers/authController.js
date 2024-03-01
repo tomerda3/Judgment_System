@@ -39,20 +39,20 @@ const createSendToken = (user, statusCode, res) => {
 
 exports.signup = catchAsync(async (req, res, next) => {
   // Check if any of the required fields are empty
-  const requiredFields = [
-    "firstName",
-    "lastName",
-    "role",
-    "email",
-    "password",
-    "passwordConfirm",
-  ];
+  // const requiredFields = [
+  //   "firstName",
+  //   "lastName",
+  //   "role",
+  //   "email",
+  //   "password",
+  //   "passwordConfirm",
+  // ];
 
-  for (const field of requiredFields) {
-    if (!req.body[field]) {
-      return next(new AppError("יש למלא את כל השדות.", 400));
-    }
-  }
+  // for (const field of requiredFields) {
+  //   if (!req.body[field]) {
+  //     return next(new AppError("יש למלא את כל השדות.", 400));
+  //   }
+  // }
 
   const newUser = await User.create({
     firstName: req.body.firstName,
@@ -71,14 +71,14 @@ exports.login = catchAsync(async (req, res, next) => {
 
   // 1) Check if email and password exist
   if (!email || !password) {
-    return next(new AppError("אנא ספק אימייל וסיסמה.", 400));
+    return next(new AppError("אנא ספק אימייל וסיסמה", 400));
   }
 
   // 2) Check if user exists && password is correct
   const user = await User.findOne({ email }).select("+password");
 
   if (!user || !(await user.correctPassword(password, user.password))) {
-    return next(new AppError("אימייל או סיסמה שגויים.", 401));
+    return next(new AppError("אימייל או סיסמה שגויים", 401));
   }
 
   // 3) change the pushToken
@@ -101,7 +101,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
 
   if (!token) {
-    new AppError("אתה לא מחובר! אנא היכנס כדי לקבל גישה.", 401);
+    new AppError("אתה לא מחובר! אנא היכנס כדי לקבל גישה", 401);
   }
   // 2) Verification token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
@@ -114,7 +114,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   // 4) Check if user changed password after the token was issued
   if (currentUser.changedPasswordAfter(decoded.iat)) {
-    new AppError("משתמש שינה לאחרונה סיסמה! נא להיכנס שוב.", 401);
+    new AppError("משתמש שינה לאחרונה סיסמה! נא להיכנס שוב", 401);
   }
 
   // GRANT ACCESS TO PROTECTED ROUTE

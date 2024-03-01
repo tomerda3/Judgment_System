@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, Form, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
+import { UserContext } from "../context/UserContext";
 import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
 import FormRow from "../components/FormRow";
 import signUp from "../api/authentication/signUp";
@@ -10,6 +11,7 @@ import RadioButton from "../components/RadioButton";
 
 const Register = () => {
   const navigate = useNavigate();
+  const auth = useContext(UserContext);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -30,7 +32,8 @@ const Register = () => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: (userData) => signUp(userData),
-    onSuccess: () => {
+    onSuccess: (user) => {
+      auth.login(user.data.user, user.token);
       toast.success("נרשמת בהצלחה");
       navigate("/");
     },
