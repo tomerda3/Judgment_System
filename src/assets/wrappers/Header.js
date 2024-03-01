@@ -14,7 +14,6 @@ const Wrapper = styled.nav`
     align-items: center;
     justify-content: space-between;
   }
-
   .toggle-btn {
     background: transparent;
     border-color: transparent;
