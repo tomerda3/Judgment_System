@@ -16,7 +16,7 @@ const LogoutContainer = () => {
 
   const logoutHandler = () => {
     auth.logout();
-    toast.success("התנתק בהצלחה");
+    toast.success("התנתקה בהצלחה");
     navigate("/");
   };
 
