@@ -1,13 +1,24 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaCaretDown } from "react-icons/fa";
 
-import { Link } from "react-router-dom";
+import { UserContext, useUsers } from "../context/UserContext";
 import Wrapper from "../assets/wrappers/LogoutContainer";
-import { FaUserCircle, FaCaretDown } from "react-icons/fa";
+import toast from "react-hot-toast";
 
-// import { useDashboardContext } from "../pages/DashboardLayout";
 const LogoutContainer = () => {
+  const navigate = useNavigate();
+  const auth = useContext(UserContext);
+
+  const { userData } = useUsers();
+
   const [showLogout, setShowLogout] = useState(false);
-  //   const { user, logoutUser } = useDashboardContext();
+
+  const logoutHandler = () => {
+    auth.logout();
+    toast.success("התנתק בהצלחה");
+    navigate("/");
+  };
 
   return (
     <Wrapper>
@@ -16,11 +27,11 @@ const LogoutContainer = () => {
         className="btn logout-btn"
         onClick={() => setShowLogout(!showLogout)}
       >
-        {"שם השופט"}
+        {`${userData.firstName} ${userData.lastName}`}
         <FaCaretDown />
       </button>
       <div className={showLogout ? "dropdown show-dropdown" : "dropdown"}>
-        <button type="button" className="dropdown-btn">
+        <button type="button" className="dropdown-btn" onClick={logoutHandler}>
           התנתק
         </button>
       </div>

@@ -6,7 +6,7 @@ import { useUsers } from "../../context/UserContext";
 
 const Header = () => {
   const { userData } = useUsers();
-  console.log("1", userData);
+
   return (
     <Wrapper>
       <div className="nav-center">
@@ -16,11 +16,14 @@ const Header = () => {
       </div>
 
       <div className="btn-container">
-        {/* <LogoutContainer /> */}
         <ThemeToggle />
-        <Link className="btn nav-item" to="login">
-          התחבר
-        </Link>
+        {userData.token ? (
+          <LogoutContainer />
+        ) : (
+          <Link className="btn nav-item" to="login">
+            התחבר
+          </Link>
+        )}
       </div>
     </Wrapper>
   );

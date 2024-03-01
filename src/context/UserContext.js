@@ -63,7 +63,7 @@ function useUsers() {
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("userData"));
     if (storedData && storedData.token) {
-      login(JSON.parse(storedData));
+      login(storedData, storedData.token);
     }
   }, [login]);
 
