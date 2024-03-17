@@ -1,4 +1,4 @@
-// const path = require("path");
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 
@@ -12,12 +12,12 @@ app.use(express.json());
 app.use(cors());
 
 // pug views to style the sending mail
-// app.set("view engine", "pug");
-// app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
 
-// app.get("/", (req, res) => {
-//   res.render("serverView");
-// });
+app.get("/", (req, res) => {
+  res.render("judgmentEmail");
+});
 
 //middleware
 app.use("/api/v1/users", userRouter);

@@ -1,0 +1,75 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Legal Judgment Template
+    style.
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: right;
+      }
+      .header {
+        color: #000090;
+        text-align: center;
+        margin-top: 24px;
+        font-size: 19px;
+        font-weight: bold;
+
+      }
+      h1{
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      h2 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+      h3 {
+        color: #333;
+        margin-bottom: 20px;
+        font-size: 20px;
+        text-align: center;
+      }
+      p {
+        color: #444;
+        line-height: 1.6;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      .logo-container {
+        text-align: center;
+      }
+      .logo {
+        max-width: 50px; 
+        margin-bottom: -30px;
+      }
+  body
+    .container
+      .logo-container
+        img.logo(alt='Plaid' src='https://lib.cet.ac.il/storage/Pics/4400_4499/0000004451/semelmedina.jpg')
+      .header  בית משפט #{court}
+      p סוג ההליך ומספרו #{procedureAndNumber}
+      p בפני #{judgeName}
+      p נושא: #{matter}
+      p התובעים: #{plaintiffs}
+      p עורך דין: #{attorney} 
+      h3 נגד  
+      p הנתבעים: #{defendants}
+      p עורך דין: #{defendantAttorney}
+      h3 תקציר המקרה
+      p #{caseSummary}
+      h3 פסק הדין
+      p #{judgment}
