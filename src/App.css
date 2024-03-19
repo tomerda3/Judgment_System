@@ -18,7 +18,7 @@
 .lastFormContainer {
   gap: 30px; /* Adjust gap between divs as needed */
   margin: 20px auto; /* Center the container horizontally */
-  width: 600px; /* Set the width directly */
+  width: 580px; /* Set the width directly */
   justify-content: center; /* Center items horizontally */
   align-items: center; /* Center items vertically */
 }

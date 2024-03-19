@@ -1,10 +1,9 @@
 import axios from "axios";
 
-async function saveJudment(judgmentData) {
-  console.log(judgmentData);
+async function sendJudgment(judgmentData) {
   try {
     const response = await axios.post(
-      `http://127.0.0.1:8000/api/v1/judgments/saveJudgment`,
+      `http://127.0.0.1:8000/api/v1/Judgments/sendJudgment`,
       judgmentData,
       {
         headers: {
@@ -25,4 +24,4 @@ async function saveJudment(judgmentData) {
   }
 }
 
-export default saveJudment;
+export default sendJudgment;

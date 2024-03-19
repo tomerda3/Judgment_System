@@ -16,8 +16,6 @@ module.exports = class Email {
     judgment,
   }) {
     this.to = "maorsa9@gmail.com";
-    // this.to = user.email;
-    // this.firstName = user.name.split(" ")[0];
     this.court = court;
     this.procedureAndNumber = procedureAndNumber;
     this.judgeName = judgeName;
@@ -29,7 +27,6 @@ module.exports = class Email {
     this.caseSummary = caseSummary;
     this.judgment = judgment;
     this.from = `JudgmentSystem<${process.env.EMAIL_FROM}>`;
-    console.log(court);
   }
 
   newTransport() {

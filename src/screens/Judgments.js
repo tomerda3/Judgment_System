@@ -1,16 +1,14 @@
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useTable } from "react-table";
 
 import allJudgments from "../api/judment/allJudgments";
 import Table from "../components/Table";
 
 const Judgments = () => {
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["Judgments"],
     queryFn: () => allJudgments(),
   });
-  // const data = useMemo(() => fakeData, []);
   const columns = useMemo(
     () => [
       {

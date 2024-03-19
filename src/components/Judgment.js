@@ -15,7 +15,7 @@ function Judgment() {
   const [caseSummary, setCaseSummary] = useState("");
   const [judgment, setJudgment] = useState("");
 
-  const judmentData = {
+  const judgmentData = {
     procedureAndNumber,
     judgeName,
     matter,
@@ -29,7 +29,7 @@ function Judgment() {
   };
 
   const { mutate, isPending } = useMutation({
-    mutationFn: (judmentData) => saveJudment(judmentData),
+    mutationFn: (judgmentData) => saveJudment(judgmentData),
     onSuccess: () => {
       toast.success("פסק דין נשלח בהצלחה");
       setProcedureAndNumber("");
@@ -50,7 +50,7 @@ function Judgment() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    mutate(judmentData);
+    mutate(judgmentData);
   };
 
   return (
@@ -199,6 +199,7 @@ function Judgment() {
           >
             {isPending ? "נשלח.." : "שלח"}
           </button>
+          <br></br>
         </form>
       </div>
     </div>

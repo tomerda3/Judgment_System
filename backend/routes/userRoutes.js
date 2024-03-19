@@ -10,6 +10,5 @@ router.post("/login", authController.login);
 
 router.route("/").get(userController.getAllUsers);
 router.route("/:id").get(userController.getUser);
-router.post("/sendJudgment", userController.sendJudgment);
 
 module.exports = router;
