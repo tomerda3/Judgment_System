@@ -17,10 +17,12 @@ const Header = () => {
 
       <div className="btn-container">
         <ThemeToggle />
-        {userData.token ? (
-          <LogoutContainer />
-        ) : (
-          <Link className="btn nav-item" to="login">
+        {userData.token && <LogoutContainer />}
+        <Link className="btn nav-item" to="/Judgments">
+          פסקי דין
+        </Link>
+        {!userData.token && (
+          <Link className="btn nav-item" to="/login">
             התחבר
           </Link>
         )}

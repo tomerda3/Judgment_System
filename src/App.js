@@ -9,6 +9,7 @@ import HomeScreen from "./screens/HomeScreen";
 import Register from "./screens/Register";
 import Login from "./screens/Login";
 import Error from "./screens/Error";
+import Judgments from "./screens/Judgments";
 import AppLayout from "./components/ui/AppLayout";
 
 const queryClient = new QueryClient({
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/judgments",
+        element: <Judgments />,
       },
     ],
   },
