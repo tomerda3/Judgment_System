@@ -37,13 +37,22 @@ const Wrapper = styled.nav`
   }
 
   .btn-container {
-    display: flex;
-    align-items: center;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Align items to the end of the container */
 
-  .btn-container > a:last-child {
-    margin-right: 10px; /* Add margin between login button and rulings button */
-  }
+}
+
+.btn-container > a {
+  margin-left: 10px; /* Add margin between buttons */
+  margin-right: 10px; /* Add margin between buttons */
+  text-align: center; /* Align the content in the center */
+
+}
+
+.btn {
+  min-width: 110px; /* נקבע רוחב מינימלי לכפתור */
+}
 
   @media (min-width: 992px) {
     position: sticky;
