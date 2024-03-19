@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 
 const userRouter = require("./routes/userRoutes.js");
+const judmentRouter = require("./routes/judgmentRoutes.js");
 const AppError = require("./utils/appError.js");
 const globalErrorHandler = require("./controllers/errorController.js");
 
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 
 //middleware
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/judments", judmentRouter);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));

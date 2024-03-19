@@ -89,7 +89,7 @@ const Register = () => {
         />
         <button type="submit" className={`btn btn-block `} disabled={isPending}>
           {isPending ? "נרשם.." : "הרשם"}
-        </button>{" "}
+        </button>
         <p>
           רשום למערכת?{" "}
           <Link to="/login" className="member-btn">

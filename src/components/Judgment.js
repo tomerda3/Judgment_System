@@ -1,20 +1,58 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import saveJudment from "../api/judment/saveJudment";
+import toast from "react-hot-toast";
 
-function Judjment() {
-  const [name, setName] = useState("");
-  const [message, setMessage] = useState("");
+function Judgment() {
   const [procedureAndNumber, setProcedureAndNumber] = useState("");
-  const [subject, setSubject] = useState("");
-  const [proofreading, setProofreading] = useState("");
-  const [composition, setComposition] = useState("");
+  const [judgeName, setJudgeName] = useState("");
+  // const [message, setMessage] = useState("");
+  const [matter, setMatter] = useState("");
+  const [court, setCourt] = useState("");
+  // const [composition, setComposition] = useState("");
   const [plaintiffs, setPlaintiffs] = useState("");
   const [attorney, setAttorney] = useState("");
   const [defendants, setDefendants] = useState("");
   const [defendantAttorney, setDefendantAttorney] = useState("");
+  const [caseSummary, setCaseSummary] = useState("");
+  const [judgment, setJudgment] = useState("");
 
-  // Function to handle form submission
+  const judmentData = {
+    procedureAndNumber,
+    judgeName,
+    matter,
+    court,
+    plaintiffs,
+    attorney,
+    defendants,
+    defendantAttorney,
+    caseSummary,
+    judgment,
+  };
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: (judmentData) => saveJudment(judmentData),
+    onSuccess: () => {
+      toast.success("פסק דין נשלח בהצלחה");
+      setProcedureAndNumber("");
+      setJudgeName("");
+      setMatter("");
+      setCourt("");
+      setPlaintiffs("");
+      setAttorney("");
+      setDefendants("");
+      setDefendantAttorney("");
+      setCaseSummary("");
+      setJudgment("");
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    mutate(judmentData);
   };
 
   return (
@@ -79,15 +117,15 @@ function Judjment() {
             <div className="innerFormContainer">
               <h3>פרטי המשפט</h3>
               <label className="lableStyle" htmlFor="name">
-                כבוד השופט
+                הרכב
               </label>
               <br />
               <input
                 className="input-field"
                 type="text"
                 id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={judgeName}
+                onChange={(e) => setJudgeName(e.target.value)}
               />
               <br />
               <label className="lableStyle" htmlFor="procedureAndNumber">
@@ -110,8 +148,8 @@ function Judjment() {
                 className="input-field"
                 type="text"
                 id="subject"
-                value={subject}
-                onChange={(e) => setSubject(e.target.value)}
+                value={matter}
+                onChange={(e) => setMatter(e.target.value)}
               />
               <br />
               <label className="lableStyle" htmlFor="proofreading">
@@ -121,11 +159,11 @@ function Judjment() {
               <input
                 className="input-field"
                 type="text"
-                id="proofreading"
-                value={proofreading}
-                onChange={(e) => setProofreading(e.target.value)}
+                id="court"
+                value={court}
+                onChange={(e) => setCourt(e.target.value)}
               />
-              <br />
+              {/* <br />
               <label className="lableStyle" htmlFor="composition">
                 הרכב
               </label>
@@ -136,14 +174,47 @@ function Judjment() {
                 value={composition}
                 onChange={(e) => setComposition(e.target.value)}
               ></input>
+              <br /> */}
+            </div>
+          </div>
+          <div className="mainFormContainer">
+            <div className="innerFormContainer">
+              <h3>פסק הדין</h3>
+              <label className="lableStyle" htmlFor="additionalField">
+                המקרה
+              </label>
+              <br />
+              <input
+                className="input-field"
+                id="additionalField"
+                value={caseSummary}
+                onChange={(e) => setCaseSummary(e.target.value)}
+              ></input>
+              <br />
+              <label className="lableStyle" htmlFor="additionalField">
+                החלטה
+              </label>
+              <br />
+              <input
+                className="input-field"
+                id="additionalField"
+                value={judgment}
+                onChange={(e) => setJudgment(e.target.value)}
+              ></input>
               <br />
             </div>
           </div>
+          <button
+            type="submit"
+            className={`submit-button `}
+            disabled={isPending}
+          >
+            {isPending ? "נשלח.." : "שלח"}
+          </button>
         </form>
       </div>
-      <input className="submit-button" type="submit" value="שלח" />
     </div>
   );
 }
 
-export default Judjment;
+export default Judgment;
