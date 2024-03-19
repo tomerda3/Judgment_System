@@ -6,10 +6,8 @@ import toast from "react-hot-toast";
 function Judgment() {
   const [procedureAndNumber, setProcedureAndNumber] = useState("");
   const [judgeName, setJudgeName] = useState("");
-  // const [message, setMessage] = useState("");
   const [matter, setMatter] = useState("");
   const [court, setCourt] = useState("");
-  // const [composition, setComposition] = useState("");
   const [plaintiffs, setPlaintiffs] = useState("");
   const [attorney, setAttorney] = useState("");
   const [defendants, setDefendants] = useState("");

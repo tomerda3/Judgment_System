@@ -26,6 +26,10 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
+        path: "/judgments",
+        element: <Judgments />,
+      },
+      {
         path: "/",
         element: <HomeScreen />,
       },
@@ -36,10 +40,6 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
-      },
-      {
-        path: "/judgments",
-        element: <Judgments />,
       },
     ],
   },
