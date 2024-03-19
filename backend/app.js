@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 
 //middleware
 app.use("/api/v1/users", userRouter);
-app.use("/api/v1/judments", judmentRouter);
+app.use("/api/v1/judgments", judmentRouter);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));

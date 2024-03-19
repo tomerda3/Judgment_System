@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import saveJudment from "../api/judment/saveJudment";
+import saveJudment from "../api/judment/saveJudgment";
 import toast from "react-hot-toast";
 
 function Judgment() {
@@ -161,33 +161,23 @@ function Judgment() {
                 value={court}
                 onChange={(e) => setCourt(e.target.value)}
               />
-              {/* <br />
-              <label className="lableStyle" htmlFor="composition">
-                הרכב
-              </label>
-              <br />
-              <input
-                className="input-field"
-                id="composition"
-                value={composition}
-                onChange={(e) => setComposition(e.target.value)}
-              ></input>
-              <br /> */}
             </div>
           </div>
-          <div className="mainFormContainer">
+          <div className="lastFormContainer">
             <div className="innerFormContainer">
               <h3>פסק הדין</h3>
               <label className="lableStyle" htmlFor="additionalField">
                 המקרה
               </label>
               <br />
-              <input
+              <textarea
                 className="input-field"
                 id="additionalField"
                 value={caseSummary}
                 onChange={(e) => setCaseSummary(e.target.value)}
-              ></input>
+                rows={4} // Set the number of visible rows
+                style={{ resize: "vertical" }} // Allow resizing vertically only
+              />
               <br />
               <label className="lableStyle" htmlFor="additionalField">
                 החלטה

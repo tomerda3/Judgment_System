@@ -12,6 +12,15 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Adjust as needed */
   gap: 30px; /* Adjust gap between divs as needed */
+  margin-top: 20px;
+}
+
+.lastFormContainer {
+  gap: 30px; /* Adjust gap between divs as needed */
+  margin: 20px auto; /* Center the container horizontally */
+  width: 600px; /* Set the width directly */
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
 }
 
 .innerFormContainer {

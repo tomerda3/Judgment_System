@@ -44,3 +44,14 @@ exports.judment = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+exports.getAllJudgments = catchAsync(async (req, res, next) => {
+  const judment = await Judment.find();
+  res.status(200).json({
+    // status: "success",
+    results: judment.length,
+    data: {
+      judment,
+    },
+  });
+});
