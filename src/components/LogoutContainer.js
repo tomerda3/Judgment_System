@@ -31,13 +31,16 @@ const LogoutContainer = () => {
         <FaCaretDown />
       </button>
       <div className={showLogout ? "dropdown show-dropdown" : "dropdown"}>
-        <button
-          type="button"
-          className="dropdown-btn"
-          onClick={() => navigate("myjudgments")}
-        >
-          פסקי הדין שלי
-        </button>
+        {userData.role === "judge" && (
+          <button
+            type="button"
+            className="dropdown-btn"
+            onClick={() => navigate("myjudgments")}
+          >
+            פסקי הדין שלי
+          </button>
+        )}
+
         <button type="button" className="dropdown-btn" onClick={logoutHandler}>
           התנתק
         </button>
