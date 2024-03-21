@@ -3,8 +3,11 @@ import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 import { useUsers } from "../context/UserContext";
+import editJudgment from "../api/judgment/editJudgment";
+import { useNavigate } from "react-router-dom";
 
-function UpdateJudgment({ data }) {
+function UpdateJudgment({ data, judgmentId }) {
+  const navigate = useNavigate();
   const { userData } = useUsers();
 
   const judgmentID = userData.id;
@@ -37,19 +40,21 @@ function UpdateJudgment({ data }) {
     judgment,
   };
 
-  // const { mutate, isPending } = useMutation({
-  //   mutationFn: (judgmentData) => saveJudment(judgmentData),
-  //   onSuccess: () => {
-  //     toast.success("פסק דין עודכן בהצלחה");
-  //   },
-  //   onError: (err) => {
-  //     toast.error(err.message);
-  //   },
-  // });
+  const { mutate, isPending } = useMutation({
+    mutationFn: (judgmentData) => editJudgment(judgmentData, judgmentId),
+    onSuccess: () => {
+      toast.success("פסק דין עודכן בהצלחה");
+      navigate("/myjudgments");
+      window.location.reload();
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // mutate(judgmentData);
+    mutate(judgmentData, judgmentId);
   };
 
   return (
@@ -193,9 +198,9 @@ function UpdateJudgment({ data }) {
           <button
             type="submit"
             className={`submit-button `}
-            // disabled={isPending}
+            disabled={isPending}
           >
-            {"עדכן"}
+            {isPending ? "..מעדכן" : "עדכן"}
           </button>
           <br></br>
         </form>

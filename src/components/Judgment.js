@@ -203,7 +203,7 @@ function Judgment() {
             className={`submit-button`}
             disabled={isPending}
           >
-            {isPending ? "נשלח.." : "שלח"}
+            {isPending ? "..שולח" : "שלח"}
           </button>
           <br></br>
         </form>

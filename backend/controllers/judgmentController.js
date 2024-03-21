@@ -3,6 +3,14 @@ const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 const Email = require("../utils/email");
 
+const filterObj = (obj, ...allowedFields) => {
+  const newObj = {};
+  Object.keys(obj).forEach((el) => {
+    if (allowedFields.includes(el)) newObj[el] = obj[el];
+  });
+  return newObj;
+};
+
 exports.judment = catchAsync(async (req, res, next) => {
   let {
     court,
@@ -59,27 +67,27 @@ exports.judment = catchAsync(async (req, res, next) => {
     },
   });
 
-  // try {
-  //   await new Email({
-  //     court,
-  //     procedureAndNumber,
-  //     judgeName,
-  //     plaintiffs,
-  //     matter,
-  //     attorney,
-  //     defendants,
-  //     defendantAttorney,
-  //     caseSummary,
-  //     judgment,
-  //   }).sendJudgment();
+  try {
+    await new Email({
+      court,
+      procedureAndNumber,
+      judgeName,
+      plaintiffs,
+      matter,
+      attorney,
+      defendants,
+      defendantAttorney,
+      caseSummary,
+      judgment,
+    }).sendJudgment();
 
-  //   res.status(200).json({
-  //     status: "success",
-  //     message: "message has been sent",
-  //   });
-  // } catch (err) {
-  //   return next(new AppError(err.message, 500));
-  // }
+    res.status(200).json({
+      status: "success",
+      message: "message has been sent",
+    });
+  } catch (err) {
+    return next(new AppError(err.message, 500));
+  }
 });
 
 exports.getAllJudgments = catchAsync(async (req, res, next) => {
@@ -98,6 +106,42 @@ exports.getJudgment = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: "success",
     data: judment,
+  });
+});
+
+exports.editJudgment = catchAsync(async (req, res, next) => {
+  // console.log(req.body);
+
+  // 1) Filtered out unwanted fields names that are not allowed to be updated
+  const filterdedBody = filterObj(
+    req.body,
+    "court",
+    "procedureAndNumber",
+    "judgeName",
+    "matter",
+    "plaintiffs",
+    "attorney",
+    "defendants",
+    "defendantAttorney",
+    "caseSummary",
+    "judgment"
+  );
+
+  // 2) Update student document
+  const editedJudgment = await Judgment.findByIdAndUpdate(
+    req.params.id,
+    filterdedBody,
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      editedJudgment,
+    },
   });
 });
 
