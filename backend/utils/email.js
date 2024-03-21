@@ -14,8 +14,9 @@ module.exports = class Email {
     defendantAttorney,
     caseSummary,
     judgment,
+    email,
   }) {
-    this.to = "maorsa9@gmail.com";
+    this.to = email;
     this.court = court;
     this.procedureAndNumber = procedureAndNumber;
     this.judgeName = judgeName;

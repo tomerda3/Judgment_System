@@ -19,6 +19,8 @@ function Judgment() {
   const [defendantAttorney, setDefendantAttorney] = useState("");
   const [caseSummary, setCaseSummary] = useState("");
   const [judgment, setJudgment] = useState("");
+  const [sendEmail, setSendEmail] = useState(false); // State to track if email should be sent
+  const [email, setEmail] = useState("");
 
   const judgmentData = {
     judgmentID,
@@ -32,12 +34,17 @@ function Judgment() {
     defendantAttorney,
     caseSummary,
     judgment,
+    email,
   };
 
   const { mutate, isPending } = useMutation({
     mutationFn: (judgmentData) => saveJudment(judgmentData),
     onSuccess: () => {
-      toast.success("פסק דין נשלח בהצלחה");
+      if (sendEmail) {
+        toast.success("פסק דין נשלח בהצלחה");
+      } else {
+        toast.success("פסק דין נשמר בהצלחה");
+      }
       setProcedureAndNumber("");
       setJudgeName("");
       setMatter("");
@@ -48,6 +55,7 @@ function Judgment() {
       setDefendantAttorney("");
       setCaseSummary("");
       setJudgment("");
+      setEmail("");
     },
     onError: (err) => {
       toast.error(err.message);
@@ -194,18 +202,58 @@ function Judgment() {
                 id="additionalField"
                 value={judgment}
                 onChange={(e) => setJudgment(e.target.value)}
-              ></input>
+              />
+              <div>
+                <label className="lableStyle" htmlFor="additionalField">
+                  לשלוח את פסק הדין במייל
+                </label>
+                <br />
+                <br />
+                <input
+                  type="checkbox"
+                  checked={sendEmail}
+                  onChange={(e) => setSendEmail(e.target.checked)}
+                  style={{
+                    marginRight: "5px",
+                    width: "15px",
+                    height: "15px",
+                  }}
+                />
+                {sendEmail && (
+                  <div>
+                    <br />
+                    <input
+                      className="input-field"
+                      placeholder="הכנס אימייל"
+                      id="additionalField"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    ></input>
+                  </div>
+                )}
+              </div>
+
               <br />
             </div>
           </div>
-          <button
-            type="submit"
-            className={`submit-button`}
-            disabled={isPending}
-          >
-            {isPending ? "..שולח" : "שלח"}
-          </button>
-          <br></br>
+          {sendEmail ? (
+            <button
+              type="submit"
+              className={`submit-button`}
+              disabled={isPending}
+            >
+              {isPending ? "..שולח" : "שלח"}
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className={`submit-button`}
+              disabled={isPending}
+            >
+              {isPending ? "..שומר" : "שמור"}
+            </button>
+          )}
+          <div className="empty-rows"></div>
         </form>
       </div>
     </div>

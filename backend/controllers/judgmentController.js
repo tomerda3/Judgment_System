@@ -11,7 +11,7 @@ const filterObj = (obj, ...allowedFields) => {
   return newObj;
 };
 
-exports.judment = catchAsync(async (req, res, next) => {
+exports.judgment = catchAsync(async (req, res, next) => {
   let {
     court,
     procedureAndNumber,
@@ -23,6 +23,7 @@ exports.judment = catchAsync(async (req, res, next) => {
     defendantAttorney,
     caseSummary,
     judgment,
+    email,
   } = req.body;
 
   console.log(req.body);
@@ -43,6 +44,13 @@ exports.judment = catchAsync(async (req, res, next) => {
   for (const field of requiredFields) {
     if (!req.body[field]) {
       return next(new AppError("יש למלא את כל השדות", 400));
+    }
+  }
+
+  if (email) {
+    let re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!re.test(email)) {
+      return next(new AppError("אנא ספק אימייל חוקי", 400));
     }
   }
 
@@ -79,6 +87,7 @@ exports.judment = catchAsync(async (req, res, next) => {
       defendantAttorney,
       caseSummary,
       judgment,
+      email,
     }).sendJudgment();
 
     res.status(200).json({
