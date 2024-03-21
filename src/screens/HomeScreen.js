@@ -1,13 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 import Judjment from "../components/Judgment";
 import { useUsers } from "../context/UserContext";
-import Judgments from "./Judgments";
 
 function HomeScreen() {
   const { userData } = useUsers();
-  const navigate = useNavigate();
 
   return (
     <div>

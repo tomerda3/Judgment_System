@@ -3,7 +3,7 @@ import axios from "axios";
 async function deleteJudgment(judgementId) {
   try {
     const response = await axios.delete(
-      `http://127.0.0.1:8000/api/v1/judgments//${judgementId}`
+      `http://127.0.0.1:8000/api/v1/judgments/${judgementId}`
     );
 
     const responseData = response.data;

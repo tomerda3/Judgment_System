@@ -93,6 +93,14 @@ exports.getAllJudgments = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getJudgment = catchAsync(async (req, res, next) => {
+  const judment = await Judgment.findById(req.params.id);
+  res.status(200).json({
+    status: "success",
+    data: judment,
+  });
+});
+
 exports.deleteJudgment = catchAsync(async (req, res, next) => {
   const judment = await Judgment.findByIdAndDelete(req.params.id);
 

@@ -12,6 +12,7 @@ import Login from "./screens/Login";
 import Error from "./screens/Error";
 import Judgments from "./screens/Judgments";
 import MyJudgments from "./screens/MyJudgments";
+import EditJudgment from "./screens/EditJudgment";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/myjudgments",
         element: <MyJudgments />,
+      },
+      {
+        path: "/editjudgment/:id",
+        element: <EditJudgment />,
       },
     ],
   },

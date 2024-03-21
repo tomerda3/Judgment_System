@@ -1,24 +1,27 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import saveJudment from "../api/judgment/saveJudgment";
 import toast from "react-hot-toast";
 
 import { useUsers } from "../context/UserContext";
 
-function Judgment() {
+function UpdateJudgment({ data }) {
   const { userData } = useUsers();
 
   const judgmentID = userData.id;
-  const [procedureAndNumber, setProcedureAndNumber] = useState("");
-  const [judgeName, setJudgeName] = useState("");
-  const [matter, setMatter] = useState("");
-  const [court, setCourt] = useState("");
-  const [plaintiffs, setPlaintiffs] = useState("");
-  const [attorney, setAttorney] = useState("");
-  const [defendants, setDefendants] = useState("");
-  const [defendantAttorney, setDefendantAttorney] = useState("");
-  const [caseSummary, setCaseSummary] = useState("");
-  const [judgment, setJudgment] = useState("");
+  const [procedureAndNumber, setProcedureAndNumber] = useState(
+    data.procedureAndNumber
+  );
+  const [judgeName, setJudgeName] = useState(data.judgeName);
+  const [matter, setMatter] = useState(data.matter);
+  const [court, setCourt] = useState(data.court);
+  const [plaintiffs, setPlaintiffs] = useState(data.plaintiffs);
+  const [attorney, setAttorney] = useState(data.attorney);
+  const [defendants, setDefendants] = useState(data.defendants);
+  const [defendantAttorney, setDefendantAttorney] = useState(
+    data.defendantAttorney
+  );
+  const [caseSummary, setCaseSummary] = useState(data.caseSummary);
+  const [judgment, setJudgment] = useState(data.judgment);
 
   const judgmentData = {
     judgmentID,
@@ -34,35 +37,24 @@ function Judgment() {
     judgment,
   };
 
-  const { mutate, isPending } = useMutation({
-    mutationFn: (judgmentData) => saveJudment(judgmentData),
-    onSuccess: () => {
-      toast.success("פסק דין נשלח בהצלחה");
-      setProcedureAndNumber("");
-      setJudgeName("");
-      setMatter("");
-      setCourt("");
-      setPlaintiffs("");
-      setAttorney("");
-      setDefendants("");
-      setDefendantAttorney("");
-      setCaseSummary("");
-      setJudgment("");
-    },
-    onError: (err) => {
-      toast.error(err.message);
-    },
-  });
+  // const { mutate, isPending } = useMutation({
+  //   mutationFn: (judgmentData) => saveJudment(judgmentData),
+  //   onSuccess: () => {
+  //     toast.success("פסק דין עודכן בהצלחה");
+  //   },
+  //   onError: (err) => {
+  //     toast.error(err.message);
+  //   },
+  // });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    mutate(judgmentData);
+    // mutate(judgmentData);
   };
 
   return (
     <div>
       <div className="formSection">
-        <h2 style={{ textAlign: "center" }}>הזן פרטי פסק דין</h2>
         <form onSubmit={handleSubmit}>
           <div className="mainFormContainer">
             <div className="innerFormContainer">
@@ -200,10 +192,10 @@ function Judgment() {
           </div>
           <button
             type="submit"
-            className={`submit-button`}
-            disabled={isPending}
+            className={`submit-button `}
+            // disabled={isPending}
           >
-            {isPending ? "נשלח.." : "שלח"}
+            {"עדכן"}
           </button>
           <br></br>
         </form>
@@ -212,4 +204,4 @@ function Judgment() {
   );
 }
 
-export default Judgment;
+export default UpdateJudgment;

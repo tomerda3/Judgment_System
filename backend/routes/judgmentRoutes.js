@@ -5,6 +5,10 @@ const router = express.Router();
 
 router.route("/").get(judmentController.getAllJudgments);
 router.post("/saveJudgment", judmentController.judment);
-router.delete("/:id", judmentController.deleteJudgment);
+
+router
+  .route("/:id")
+  .get(judmentController.getJudgment)
+  .delete(judmentController.deleteJudgment);
 
 module.exports = router;

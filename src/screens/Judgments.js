@@ -1,8 +1,9 @@
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import allJudgments from "../api/judment/allJudgments";
+import allJudgments from "../api/judgment/allJudgments";
 import Table from "../components/Table";
+import Loader from "../components/ui/Loader";
 
 const Judgments = () => {
   const { data, isLoading } = useQuery({
@@ -56,7 +57,7 @@ const Judgments = () => {
   );
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (
