@@ -2,8 +2,8 @@ import { useMemo } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import toast from "react-hot-toast";
+import styled from "styled-components";
 
 import { useUsers } from "../context/UserContext";
 import allJudgments from "../api/judgment/allJudgments";
