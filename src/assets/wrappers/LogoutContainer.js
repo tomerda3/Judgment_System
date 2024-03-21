@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   position: relative;
@@ -7,6 +7,7 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     gap: 0 0.5rem;
+    margin-right: 10px; /* Add margin between buttons */
   }
   .img {
     width: 25px;
@@ -15,14 +16,15 @@ const Wrapper = styled.div`
   }
   .dropdown {
     position: absolute;
-    top: 45px;
+    top: 35px;
     left: 0;
-    width: 100%;
+    width: 90%;
     box-shadow: var(--shadow-2);
     text-align: center;
     visibility: hidden;
     border-radius: var(--border-radius);
     background: var(--primary-500);
+    margin-right: 10px; /* Add margin between buttons */
   }
   .show-dropdown {
     visibility: visible;

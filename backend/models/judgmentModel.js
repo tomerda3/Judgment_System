@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 
 const judmentSchema = new mongoose.Schema({
+  judgmentID: {
+    type: String,
+  },
   court: {
     type: String,
     required: [true, "נא למלא"],

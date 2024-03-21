@@ -32,6 +32,9 @@ const LogoutContainer = () => {
       </button>
       <div className={showLogout ? "dropdown show-dropdown" : "dropdown"}>
         <button type="button" className="dropdown-btn" onClick={logoutHandler}>
+          פסקי דין שלי
+        </button>
+        <button type="button" className="dropdown-btn" onClick={logoutHandler}>
           התנתק
         </button>
       </div>

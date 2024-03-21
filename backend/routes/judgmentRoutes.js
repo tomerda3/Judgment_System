@@ -6,6 +6,5 @@ const router = express.Router();
 
 router.route("/").get(judmentController.getAllJudgments);
 router.post("/saveJudgment", judmentController.judment);
-router.post("/sendJudgment", judmentController.sendJudgment);
 
 module.exports = router;

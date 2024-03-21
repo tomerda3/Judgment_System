@@ -2,8 +2,12 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import saveJudment from "../api/judment/saveJudgment";
 import toast from "react-hot-toast";
+import { useUsers } from "../context/UserContext";
 
 function Judgment() {
+  const { userData } = useUsers();
+
+  const judgmentID = userData.id;
   const [procedureAndNumber, setProcedureAndNumber] = useState("");
   const [judgeName, setJudgeName] = useState("");
   const [matter, setMatter] = useState("");
@@ -16,6 +20,7 @@ function Judgment() {
   const [judgment, setJudgment] = useState("");
 
   const judgmentData = {
+    judgmentID,
     procedureAndNumber,
     judgeName,
     matter,
