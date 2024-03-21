@@ -1,4 +1,4 @@
-const Judment = require("../models/judgmentModel");
+const Judgment = require("../models/judgmentModel");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 const Email = require("../utils/email");
@@ -38,7 +38,7 @@ exports.judment = catchAsync(async (req, res, next) => {
     }
   }
 
-  const newJudment = await Judment.create({
+  const newJudment = await Judgment.create({
     judgmentID: req.body.judgmentID,
     court: req.body.court,
     procedureAndNumber: req.body.procedureAndNumber,
@@ -83,7 +83,7 @@ exports.judment = catchAsync(async (req, res, next) => {
 });
 
 exports.getAllJudgments = catchAsync(async (req, res, next) => {
-  const judment = await Judment.find();
+  const judment = await Judgment.find();
   res.status(200).json({
     // status: "success",
     results: judment.length,
@@ -93,59 +93,13 @@ exports.getAllJudgments = catchAsync(async (req, res, next) => {
   });
 });
 
-// exports.sendJudgment = catchAsync(async (req, res, next) => {
-//   let {
-//     court,
-//     procedureAndNumber,
-//     judgeName,
-//     plaintiffs,
-//     matter,
-//     attorney,
-//     defendants,
-//     defendantAttorney,
-//     caseSummary,
-//     judgment,
-//   } = req.body;
-//   // console.log(req.body);
+exports.deleteJudgment = catchAsync(async (req, res, next) => {
+  const judment = await Judgment.findByIdAndDelete(req.params.id);
 
-//   const requiredFields = [
-//     "court",
-//     "procedureAndNumber",
-//     "judgeName",
-//     "plaintiffs",
-//     "matter",
-//     "attorney",
-//     "defendants",
-//     "defendantAttorney",
-//     "caseSummary",
-//     "judgment",
-//   ];
+  console.log(judment);
 
-//   for (const field of requiredFields) {
-//     if (!req.body[field]) {
-//       return next(new AppError("יש למלא את כל השדות", 400));
-//     }
-//   }
-
-//   try {
-//     await new Email({
-//       court,
-//       procedureAndNumber,
-//       judgeName,
-//       plaintiffs,
-//       matter,
-//       attorney,
-//       defendants,
-//       defendantAttorney,
-//       caseSummary,
-//       judgment,
-//     }).sendJudgment();
-
-//     res.status(200).json({
-//       status: "success",
-//       message: "message has been sent",
-//     });
-//   } catch (err) {
-//     return next(new AppError(err.message, 500));
-//   }
-// });
+  res.status(204).json({
+    status: "success",
+    data: null,
+  });
+});

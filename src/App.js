@@ -5,12 +5,13 @@ import "./App.css";
 
 import { DarkModeProvider } from "./context/DarkModeContext";
 import { UserContext, useUsers } from "./context/UserContext";
+import AppLayout from "./components/ui/AppLayout";
 import HomeScreen from "./screens/HomeScreen";
 import Register from "./screens/Register";
 import Login from "./screens/Login";
 import Error from "./screens/Error";
 import Judgments from "./screens/Judgments";
-import AppLayout from "./components/ui/AppLayout";
+import MyJudgments from "./screens/MyJudgments";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,10 +27,6 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
-        path: "/judgments",
-        element: <Judgments />,
-      },
-      {
         path: "/",
         element: <HomeScreen />,
       },
@@ -40,6 +37,14 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/judgments",
+        element: <Judgments />,
+      },
+      {
+        path: "/myjudgments",
+        element: <MyJudgments />,
       },
     ],
   },
